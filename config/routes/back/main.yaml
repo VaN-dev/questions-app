@@ -1,3 +1,7 @@
 admin.index:
     path: /
     controller: App\Controller\Back\DefaultController::index
+
+admin.category:
+    resource: category.yaml
+    prefix: /category

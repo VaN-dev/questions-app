@@ -1,0 +1,19 @@
+category:
+    path: /
+    defaults: { _controller: App\Controller\Back\CategoryController:index }
+
+category.create:
+    path: /create
+    defaults: { _controller: App\Controller\Back\CategoryController:create }
+
+category.update:
+    path: /{id}/update
+    defaults: { _controller: App\Controller\Back\CategoryController:update }
+    requirements:
+        id: \d+
+
+category.delete:
+    path: /{id}/delete
+    defaults: { _controller: App\Controller\Back\CategoryController:delete }
+    requirements:
+        id: \d+
