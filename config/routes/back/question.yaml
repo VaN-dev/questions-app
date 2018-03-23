@@ -1,0 +1,19 @@
+question:
+    path: /
+    defaults: { _controller: App\Controller\Back\QuestionController:index }
+
+question.create:
+    path: /create
+    defaults: { _controller: App\Controller\Back\QuestionController:create }
+
+question.update:
+    path: /{id}/update
+    defaults: { _controller: App\Controller\Back\QuestionController:update }
+    requirements:
+        id: \d+
+
+question.delete:
+    path: /{id}/delete
+    defaults: { _controller: App\Controller\Back\QuestionController:delete }
+    requirements:
+        id: \d+

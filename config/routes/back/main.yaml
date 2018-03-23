@@ -5,3 +5,7 @@ admin.index:
 admin.category:
     resource: category.yaml
     prefix: /category
+
+admin.question:
+    resource: question.yaml
+    prefix: /question

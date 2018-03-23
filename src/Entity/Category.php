@@ -28,6 +28,8 @@ class Category
     private $name;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="category")
      */
     private $questions;
@@ -35,6 +37,11 @@ class Category
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId()
