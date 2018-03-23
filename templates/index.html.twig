@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Frontend</h1>
+
+    <a href="{{ path('app.index') }}" class="btn btn-primary">Frontend</a>
+    <a href="{{ path('admin.index') }}" class="btn btn-primary">Backend</a>
+
+    <hr>
+
+    <a href="{{ path('login') }}" class="btn btn-primary">Login</a>
+    <a href="{{ path('logout') }}" class="btn btn-primary">Logout</a>
+{% endblock body %}

@@ -1,0 +1,3 @@
+admin.index:
+    path: /
+    controller: App\Controller\Back\DefaultController::index
