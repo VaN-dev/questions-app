@@ -9,3 +9,7 @@ admin.category:
 admin.question:
     resource: question.yaml
     prefix: /question
+
+admin.evaluation:
+    resource: evaluation.yaml
+    prefix: /evaluation

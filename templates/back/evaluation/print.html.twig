@@ -1,0 +1,15 @@
+{% extends 'back/base-print.html.twig' %}
+
+{% block body %}
+    <h1>{{ evaluation.candidate }}, {{ "now" | date('d/m/Y') }}</h1>
+
+    {% for question in evaluation.questions %}
+        <h2>{{ question.label }}</h2>
+
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-lg btn-default">1</button>
+            <button type="button" class="btn btn-lg btn-default">2</button>
+            <button type="button" class="btn btn-lg btn-default">3</button>
+        </div>
+    {% endfor %}
+{% endblock body %}

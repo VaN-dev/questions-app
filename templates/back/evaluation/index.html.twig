@@ -1,0 +1,42 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Evaluations</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <a href="{{ path('evaluation.create') }}" class="btn btn-outline-secondary">Create</a>
+            </div>
+        </div>
+    </div>
+
+    {% if evaluations is not empty %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Candidate</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for evaluation in evaluations %}
+            <tr>
+                <td>{{ evaluation.id }}</td>
+                <td>{{ evaluation.candidate }}</td>
+                <td>
+                    <a href="{{ path('evaluation.update', {id: evaluation.id}) }}">update</a>
+                    <a href="{{ path('evaluation.delete', {id: evaluation.id}) }}">delete</a>
+                    <a href="{{ path('evaluation.print', {id: evaluation.id}) }}">print</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        No data yet.
+    {% endif %}
+
+{% endblock body %}

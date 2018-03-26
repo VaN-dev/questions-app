@@ -26,6 +26,11 @@ class Question
      */
     private $category;
 
+    public function __toString()
+    {
+        return $this->label;
+    }
+
     public function getId()
     {
         return $this->id;
