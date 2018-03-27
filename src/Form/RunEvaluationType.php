@@ -10,14 +10,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EvaluationType extends AbstractType
+class RunEvaluationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('position')
-            ->add('candidate')
-            ->add('questions', null, [
+            ->add('answers', null, [
                 'expanded' => true,
             ])
             ->add('save', SubmitType::class)

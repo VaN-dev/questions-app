@@ -23,3 +23,9 @@ evaluation.print:
     defaults: { _controller: App\Controller\Back\EvaluationController:print }
     requirements:
         id: \d+
+
+evaluation.run:
+    path: /{id}/run
+    defaults: { _controller: App\Controller\Back\EvaluationController:run }
+    requirements:
+        id: \d+

@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\Answer;
 use App\Entity\Evaluation;
 use App\Form\EvaluationType;
+use App\Form\RunEvaluationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -75,6 +76,16 @@ class EvaluationController extends Controller
     public function print(Evaluation $evaluation)
     {
         return $this->render('back/evaluation/print.html.twig', [
+            'evaluation' => $evaluation,
+        ]);
+    }
+
+    public function run(Evaluation $evaluation)
+    {
+        $form = $this->createForm(RunEvaluationType::class, $evaluation);
+
+        return $this->render('back/evaluation/run.html.twig', [
+//            'form' => $form->createView(),
             'evaluation' => $evaluation,
         ]);
     }
