@@ -23,6 +23,8 @@ class Answer
     private $evaluation;
 
     /**
+     * @var Question
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Question")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -32,6 +34,7 @@ class Answer
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $value;
+
 
     public function getId()
     {

@@ -44,6 +44,8 @@ class Evaluation
     private $questions;
 
     /**
+     * @var Answer[]
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="evaluation")
      */
     private $answers;
@@ -54,6 +56,16 @@ class Evaluation
         $this->status = false;
         $this->questions = new ArrayCollection();
         $this->answers = new ArrayCollection();
+    }
+
+    public function getScore()
+    {
+        $score = 0;
+        foreach ($this->answers as $answer) {
+            $score += $answer->getValue();
+        }
+
+        return $score;
     }
 
     public function getId()
@@ -156,6 +168,15 @@ class Evaluation
     {
         if ($this->answers->contains($answer)) {
             $this->answers->removeElement($answer);
+        }
+
+        return $this;
+    }
+
+    public function clearAnswers(): self
+    {
+        foreach ($this->answers as $answer) {
+            $this->removeAnswer($answer);
         }
 
         return $this;

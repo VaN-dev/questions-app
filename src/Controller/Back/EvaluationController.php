@@ -80,13 +80,43 @@ class EvaluationController extends Controller
         ]);
     }
 
-    public function run(Evaluation $evaluation)
+    public function run(Request $request, Evaluation $evaluation)
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        foreach ($evaluation->getQuestions() as $question) {
+            $answer = (new Answer())
+                ->setQuestion($question)
+                ->setEvaluation($evaluation)
+            ;
+            $evaluation->addAnswer($answer);
+        }
+
         $form = $this->createForm(RunEvaluationType::class, $evaluation);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $evaluation->clearAnswers();
+            foreach ($evaluation->getQuestions() as $question) {
+                $answer = (new Answer())
+                    ->setQuestion($question)
+                    ->setEvaluation($evaluation)
+                    ->setValue($request->request->get('score')[$question->getId()])
+                ;
+                $evaluation->addAnswer($answer);
+                $entityManager->persist($answer);
+            }
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('evaluation');
+        }
+
+
         return $this->render('back/evaluation/run.html.twig', [
-//            'form' => $form->createView(),
-            'evaluation' => $evaluation,
+            'form' => $form->createView(),
+//            'evaluation' => $evaluation,
         ]);
     }
 }

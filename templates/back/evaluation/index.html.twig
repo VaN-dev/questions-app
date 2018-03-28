@@ -17,6 +17,7 @@
             <tr>
                 <th>#</th>
                 <th>Candidate</th>
+                <th>Score</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -25,6 +26,7 @@
             <tr>
                 <td>{{ evaluation.id }}</td>
                 <td>{{ evaluation.candidate }}</td>
+                <td>{{ evaluation.score }}</td>
                 <td>
                     <a href="{{ path('evaluation.update', {id: evaluation.id}) }}">update</a>
                     <a href="{{ path('evaluation.delete', {id: evaluation.id}) }}">delete</a>
