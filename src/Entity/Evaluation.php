@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Evaluation
 {
+    const STATUTES = [
+        0 => 'to do',
+        1 => 'done',
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -24,16 +29,22 @@ class Evaluation
     private $createdAt;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $position;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $candidate;
 
     /**
+     * @var boolean
+     *
      * @ORM\Column(type="boolean")
      */
     private $status;
@@ -46,7 +57,7 @@ class Evaluation
     /**
      * @var Answer[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="evaluation")
+     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="evaluation", cascade={"persist", "remove"})
      */
     private $answers;
 
@@ -66,6 +77,11 @@ class Evaluation
         }
 
         return $score;
+    }
+
+    public function getStatusLabel(): string
+    {
+        return self::STATUTES[$this->status];
     }
 
     public function getId()
@@ -109,7 +125,7 @@ class Evaluation
         return $this;
     }
 
-    public function getStatus(): boolean
+    public function getStatus(): bool
     {
         return $this->status;
     }

@@ -84,6 +84,8 @@ class EvaluationController extends Controller
     {
         $entityManager = $this->getDoctrine()->getManager();
 
+        $evaluation->clearAnswers();
+
         foreach ($evaluation->getQuestions() as $question) {
             $answer = (new Answer())
                 ->setQuestion($question)
@@ -97,7 +99,7 @@ class EvaluationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $evaluation->clearAnswers();
+            $evaluation->setStatus(true);
             foreach ($evaluation->getQuestions() as $question) {
                 $answer = (new Answer())
                     ->setQuestion($question)
@@ -105,7 +107,6 @@ class EvaluationController extends Controller
                     ->setValue($request->request->get('score')[$question->getId()])
                 ;
                 $evaluation->addAnswer($answer);
-                $entityManager->persist($answer);
             }
 
             $entityManager->flush();

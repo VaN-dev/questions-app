@@ -26,8 +26,8 @@
                 <td>{{ question.id }}</td>
                 <td>{{ question.label }}</td>
                 <td>
-                    <a href="{{ path('question.update', {id: question.id}) }}">update</a>
-                    <a href="{{ path('question.delete', {id: question.id}) }}">delete</a>
+                    <span data-feather="edit"></span> <a href="{{ path('question.update', {id: question.id}) }}">update</a>&nbsp; &nbsp;
+                    <span data-feather="trash"></span> <a href="{{ path('question.delete', {id: question.id}) }}">delete</a>
                 </td>
             </tr>
             {% endfor %}

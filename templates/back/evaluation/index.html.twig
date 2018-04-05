@@ -17,7 +17,9 @@
             <tr>
                 <th>#</th>
                 <th>Candidate</th>
+                <th>Position</th>
                 <th>Score</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -26,12 +28,14 @@
             <tr>
                 <td>{{ evaluation.id }}</td>
                 <td>{{ evaluation.candidate }}</td>
+                <td>{{ evaluation.position }}</td>
                 <td>{{ evaluation.score }}</td>
+                <td><span class="badge badge-pill {% if evaluation.status == true %}badge-success{% else %}badge-warning{% endif %}">{{ evaluation.statusLabel }}</span></td>
                 <td>
-                    <a href="{{ path('evaluation.update', {id: evaluation.id}) }}">update</a>
-                    <a href="{{ path('evaluation.delete', {id: evaluation.id}) }}">delete</a>
-                    <a href="{{ path('evaluation.print', {id: evaluation.id}) }}">print</a>
-                    <a href="{{ path('evaluation.run', {id: evaluation.id}) }}">run</a>
+                    <span data-feather="edit"></span> <a href="{{ path('evaluation.update', {id: evaluation.id}) }}">update</a>&nbsp; &nbsp;
+                    <span data-feather="trash"></span> <a href="{{ path('evaluation.delete', {id: evaluation.id}) }}">delete</a>&nbsp; &nbsp;
+                    <span data-feather="printer"></span> <a href="{{ path('evaluation.print', {id: evaluation.id}) }}">print</a>&nbsp; &nbsp;
+                    <span data-feather="play"></span> <a href="{{ path('evaluation.run', {id: evaluation.id}) }}">run</a>
                 </td>
             </tr>
             {% endfor %}
